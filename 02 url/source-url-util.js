@@ -7,7 +7,7 @@ javascript:(function(){
   /* --- url判定のregExpクラス --- */
   function regxDatas() {
     this.cr_base_url = new RegExp(/(https:\/\/.+?\/).*/);
-    this.cr_pv_page = new RegExp(/\/cms\/frames\/view\?id=[0-9]+/);
+    this.cr_pv_page = new RegExp(/(\/cms\/)(frames|article_pages)(\/view\?id=[0-9]+)/);
   }
   regxDatas.prototype = {
     get_home: function(str) {
