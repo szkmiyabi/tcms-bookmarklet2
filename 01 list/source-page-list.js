@@ -7,7 +7,7 @@ javascript:(function(){
   /* --- url判定のregExpクラス --- */
   function regxDatas() {
     this.cr_base_url = new RegExp(/(https:\/\/.+?\/).*/);
-    this.cr_sitemaps = new RegExp(/\/cms\/site_maps\/frame$/);
+    this.cr_sitemaps = new RegExp(/(\/cms\/site_maps\/)(page|frame$)/);
     this.cr_part_templates = new RegExp(/\/cms\/part_templates$/);
   }
   regxDatas.prototype = {
