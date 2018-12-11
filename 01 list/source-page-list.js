@@ -41,6 +41,7 @@ javascript:(function(){
       var arr = this.get_page_list_sitemaps_arr();
       for(var i=0; i<arr.length; i++) {
         str += "<div>";
+        str += '<p><input type="checkbox" onclick="javascript:(function(){var e = (window.event) ? window.event : arguments.callee.caller.arguments[0];var me = e.target || e.srcElement;var pdv = me.parentNode.parentNode;if(pdv.getAttribute(\'style\')===null) {pdv.setAttribute(\'style\', \'background:yellow\');}else{pdv.removeAttribute(\'style\');}})();"></p>';
 				str += "<p>" + arr[i][0] + "</p>";
 				str += '<p><a href="' + arr[i][1] + '" target="_blank">' + arr[i][1] + "</a></p>";
 				str += '<p><a href="' + arr[i][2] + '" target="_blank">' + arr[i][2] + "</a></p>";
@@ -71,6 +72,7 @@ javascript:(function(){
       var arr = this.get_page_list_part_templates_arr();
       for(var i=0; i<arr.length; i++) {
         str += "<div>";
+        str += '<p><input type="checkbox" onclick="javascript:(function(){var e = (window.event) ? window.event : arguments.callee.caller.arguments[0];var me = e.target || e.srcElement;var pdv = me.parentNode.parentNode;if(pdv.getAttribute(\'style\')===null) {pdv.setAttribute(\'style\', \'background:yellow\');}else{pdv.removeAttribute(\'style\');}})();"></p>';
 				str += "<p>" + arr[i][0] + "</p>";
 				str += '<p><a href="' + arr[i][1] + '" target="_blank">' + arr[i][1] + "</a></p>";
 				str += '<p><a href="' + arr[i][2] + '" target="_blank">' + arr[i][2] + "</a></p>";
@@ -124,15 +126,28 @@ javascript:(function(){
 			nwd.writeln('.flex-table div p { margin-right: 25px; }');
 			nwd.writeln('.flex-table div p:last-child { margin-right: none; }');
 			nwd.writeln('</style>');
+      nwd.writeln('<script>');
+      nwd.writeln('function add_color_handle() {');
+      nwd.writeln('var e = (window.event) ? window.event : arguments.callee.caller.arguments[0];');
+      nwd.writeln('var me = e.target || e.srcElement;');
+      nwd.writeln('var pdv = me.parentNode.parentNode;');
+      nwd.writeln('if(pdv.getAttribute("style")===null) {');
+      nwd.writeln('pdv.setAttribute("style", "background:yellow");');
+      nwd.writeln('}else{');
+      nwd.writeln('pdv.removeAttribute("style");');
+      nwd.writeln('}');
+      nwd.writeln('}');
+      nwd.writeln('</script>');
 			nwd.writeln('</head>');
 			nwd.writeln('<body>');
-			nwd.writeln('<section class="flex-table">');
+			nwd.writeln('<section class="flex-table" id="flex-table-wrap">');
 			nwd.writeln(str);
 			nwd.writeln('</section>');
 			nwd.writeln('</body>');
 			nwd.writeln('</html>');
 		},
   };
+
   var app = new pageListUtil();
   if(app.urlRegx.is_cr_sitemaps(app.url)) app.disp_page_list_sitemaps();
   else if(app.urlRegx.is_cr_part_templates(app.url)) app.disp_page_list_part_templates();
