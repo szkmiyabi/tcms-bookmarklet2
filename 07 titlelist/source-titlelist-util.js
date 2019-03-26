@@ -20,6 +20,7 @@ javascript:(function(){
       for(var i=0; i<rows.length; i++) {
         var row = rows[i];
         var atag = row.getElementsByTagName("a").item(0);
+        atag.setAttribute("target", "_blank");
         console.log(atag.getAttribute("href"));
         var pid = this.get_pid(atag);
         var edit_link_url = this.edit_url_base + pid;
